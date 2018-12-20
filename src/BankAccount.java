@@ -42,7 +42,10 @@ public abstract class BankAccount
 	 */
 	public void deposit(double amt)
 	{
-		balance += amt;
+		if (amt >= 0)
+		{
+			balance += amt;
+		}
 	}
 	
 	/**
@@ -51,7 +54,10 @@ public abstract class BankAccount
 	 */
 	public void withdraw(double amt)
 	{
-		balance -= amt;
+		if (amt >= 0)
+		{
+			balance -= amt;
+		}
 	}
 	
 	/**
@@ -75,7 +81,7 @@ public abstract class BankAccount
 	/**
 	 * 
 	 */
-	public abstract double endOfMonthUpdate();
+	public abstract void endOfMonthUpdate();
 	
 	/**
 	 * withdraws money from the first account and deposits the money into the other account
@@ -84,8 +90,11 @@ public abstract class BankAccount
 	 */
 	public void transfer(BankAccount other, double amt)
 	{
-		withdraw(amt);
-		other.deposit(amt);
+		if (amt >= 0)
+		{
+			withdraw(amt);
+			other.deposit(amt);
+		}
 	}
 	
 	/**
