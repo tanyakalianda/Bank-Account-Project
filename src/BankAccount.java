@@ -97,12 +97,17 @@ public abstract class BankAccount
 		}
 	}
 	
+	public int getAccountNumber()
+	{
+		return accNum;
+	}
+	
 	/**
 	 * returns the account number, the name of the account holder, and the balance stored in the account
 	 */
 	public String toString()
 	{
-		return accNum + "/t" + name + "/t" + "$" + balance;
+		return accNum + "\t" + name + "\t" + "$" + balance;
 	}
 	
 	

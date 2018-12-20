@@ -52,7 +52,38 @@ public class MainClass
 			}
 			else if (answer.equals("transaction"))
 			{
-				
+				System.out.print("Enter \"w\" to withdraw money, \"d\" to deposit money, \"t\" to transfer money, or \"num\" to get the account number: ");
+				String response = in.nextLine();
+				switch(response) 
+				{
+					case "w":
+					{
+						//find my account and store it in a local variable
+						System.out.print("Please enter your account number: ");
+						int num = in.nextInt();
+						in.nextLine();
+						BankAccount number = null;
+						for (int i = 0; i < accounts.size(); i++)
+						{
+							if (accounts.get(i).getAccountNumber() == num)
+							{
+								number = num;
+							}
+						}
+						if (number == null)
+						{
+							System.out.print("This is not a valid account number. Please try again: ");
+						}
+						System.out.print("Enter the amount you wish to withdraw: ");
+						double amount = in.nextDouble();
+						accounts.withdraw(amount);
+					}
+					case "d":
+					{
+						
+					}
+					
+				}
 			}
 			else if (answer.equals("end"))
 			{
