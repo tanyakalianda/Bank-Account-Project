@@ -21,6 +21,7 @@ public abstract class BankAccount
 		name = n;
 		accNum = nextAccNum;
 		balance = 0;
+		nextAccNum++;
 	}
 	
 	/**
@@ -33,6 +34,7 @@ public abstract class BankAccount
 		name = n;
 		accNum = nextAccNum;
 		balance = b;
+		nextAccNum++;
 	}
 	
 	//methods
@@ -107,7 +109,7 @@ public abstract class BankAccount
 	 */
 	public String toString()
 	{
-		return accNum + "\t" + name + "\t" + "$" + balance;
+		return "Account number: " + accNum + "\t" + "Name: " + name + "\t" + "Balance: $" + balance;
 	}
 	
 	
