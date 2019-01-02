@@ -86,8 +86,30 @@ public class MainClass
 							{
 								System.out.print("Enter your name: ");
 								String name = in.nextLine();
-								//must return all the accounts with this name
+								ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
+								for (int i = 0; i < accounts.size(); i++);
+								{
+									String possName = accounts.get(i).getName();
+									if (possName.equals(name))
+									{
+										account2.add(accounts.get(i));
+									}
+								}
+								for (int i = 0; i < account2.size(); i++);
+								{
+									if (account2.get(i) instanceof CheckingAccount)
+									{
+										System.out.println("These are your checking accounts: " + account2.get(i).getNum());
+									}
+									if (account2.get(i) instanceof SavingsAccount)
+									{
+										System.out.println("These are your savings accounts: " + account2.get(i).getNum());
+									}
+								}
 								tryAgain = false;
+								System.out.print("Please enter your account number: ");
+								num = in.nextInt();
+								in.nextLine();
 							}
 							else
 							{
@@ -104,34 +126,59 @@ public class MainClass
 						{
 							case "w":
 							{
-								System.out.print("Enter the amount you wish to withdraw: ");
-								double amount = in.nextDouble();
-								//must identify which account you want to use
-								number.withdraw(amount);
-								accountNum = false;
+								try
+								{
+									System.out.print("Enter the amount you wish to withdraw: ");
+									double amount = in.nextDouble();
+									//must identify which account you want to use
+									number.withdraw(amount);
+									accountNum = false;
+								}
+								catch(IllegalArgumentException e)
+								{
+									System.out.println("Transaction not authorized");
+								}
 							}
 							case "d":
 							{
-								System.out.print("Enter the amount you wish to deposit: ");
-								double amount = in.nextDouble();
-								number.deposit(amount);
-								accountNum = false;
+								try
+								{
+									System.out.print("Enter the amount you wish to deposit: ");
+									double amount = in.nextDouble();
+									number.deposit(amount);
+									accountNum = false;
+								}
+								catch(IllegalArgumentException e)
+								{
+									System.out.println("Transaction not authorized");
+								}
 							}
 							case "t":
 							{ //must det which account the money is being transfered to
-								System.out.print("Enter the amount you wish to transfer: ");
-								double amount = in.nextDouble();
-								in.nextLine();
-								System.out.print("Enter the account number you wish to transfer the money to: ");
-								int account = in.nextInt();
-								in.nextLine();					
-								number.transfer(account, amount);
-								accountNum = false;
+								try
+								{
+									System.out.print("Enter the amount you wish to transfer: ");
+									double amount = in.nextDouble();
+									in.nextLine();
+									System.out.print("Enter the account number you wish to transfer the money to: ");
+									int account = in.nextInt();
+									in.nextLine();					
+									number.transfer(account, amount);
+									accountNum = false;
+								}
+								catch(IllegalArgumentException e)
+								{
+									System.out.println("Transaction not authorized");
+								}
 							}
 							case "num":
 							{
 								System.out.print(number.getAccountNumber());
 								accountNum = false;
+							}
+							default: 
+							{
+								System.out.println("Invalid response. Please try again: ");
 							}
 						}
 					}
