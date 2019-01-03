@@ -130,14 +130,17 @@ public class MainClass
 							case "w":
 							{									
 								System.out.print("Enter the amount you wish to withdraw: ");
-								double amount = in.nextDouble();
-								try
+								while (isNumeric)
 								{
-									number.withdraw(amount);					
-								}
-								catch(IllegalArgumentException e)
-								{
-									System.out.println("Transaction not authorized");
+									double amount = in.nextDouble();
+									try
+									{
+										number.withdraw(amount);					
+									}
+									catch(IllegalArgumentException e)
+									{
+										System.out.println("Transaction not authorized");
+									}
 								}
 							}
 							case "d":
@@ -192,7 +195,22 @@ public class MainClass
 			{
 				System.out.println("Invalid input. Please try again.");
 			}
-		}	
+		}
+		
+		
+		private static boolean isNumeric(String str)
+		{		
+			try
+			{
+				Double.parseDouble(str);
+				return true;
+			}
+			catch (IllegalArgumentException e)
+			{
+				return false;
+			}
+		}
+
 	}
 
 }
