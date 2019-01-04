@@ -26,8 +26,10 @@ public class MainClass
 			
 		while (!terminate)
 		{
+			
 			System.out.print("Enter \"add\" to add an account, enter \"transaction\" to make a transaction, or enter \"end\" to terminate the program: ");
 			String answer = in.nextLine();
+			System.out.println("Answer: " + answer);
 			if (answer.equals("add"))
 			{
 				System.out.print("Enter \"checking\" to create a checking account or \"savings\" to create a savings account: ");
@@ -89,7 +91,7 @@ public class MainClass
 							}
 							else if (ans.equals("name"))
 							{
-								System.out.print("Enter your name: ");
+								System.out.print("Enter your name: ");       //what happens if they don't give a valid name?
 								String name = in.nextLine();
 								ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
 								for (int i = 0; i < accounts.size(); i++)
@@ -104,16 +106,21 @@ public class MainClass
 								{
 									if (account2.get(i) instanceof CheckingAccount)
 									{
-										System.out.println("These are your checking accounts: " + account2.get(i).toString());
+										System.out.println("This is your checking account: " + account2.get(i).toString());
 									}
 									else if (account2.get(i) instanceof SavingsAccount)
 									{
-										System.out.println("These are your savings accounts: " + account2.get(i).toString());
+										System.out.println("This is your savings account: " + account2.get(i).toString());
 									}
 								}
 								tryAgain = false;
 								System.out.print("Please enter your account number: ");
 								num = in.nextLine();
+								while(!isNumeric(num))
+								{
+									System.out.print("You have not entered a numeric value. Please enter your account number: ");
+									num = in.nextLine();
+								}
 							}
 							else
 							{
@@ -125,46 +132,52 @@ public class MainClass
 					else
 					{
 						accountNum = false;
-						System.out.print("Enter \"w\" to withdraw money, \"d\" to deposit money, \"t\" to transfer money, or \"num\" to get the account number: ");
+						System.out.print("Enter \"w\" to withdraw money, \"d\" to deposit money, \"t\" to transfer money, or \"n\" to get the account number: ");
 						String response = in.nextLine();
 						switch(response) 
 						{
 							case "w":
 							{									
-								System.out.print("Enter the amount you wish to withdraw: ");
-								double amount = in.nextDouble();												
+								System.out.print("Enter the amount you wish to withdraw: ");    //what if they give a string?
+								double amount = in.nextDouble();
+								in.nextLine();
 								try
 								{
-									number.withdraw(amount);					
+									number.withdraw(amount);	
+									System.out.println("Your new balance is: $" + number.getBalance());
 								}
 								catch(IllegalArgumentException e)
 								{
 									System.out.println("Transaction not authorized");
 								}
+								break;
 							}
 							case "d":
 							{						
-								System.out.print("Enter the amount you wish to deposit: ");
+								System.out.print("Enter the amount you wish to deposit: ");      //same as above...it crashes
 								double amount = in.nextDouble();
+								in.nextLine();
 								try
 								{	
 									number.deposit(amount);	
+									System.out.println("Your new balance is: $" + number.getBalance());
 								}
 								catch(IllegalArgumentException e)
 								{
 									System.out.println("Transaction not authorized");
 								}
+								break;
 							}
 							case "t":
 							{ 
-								System.out.print("Enter the amount you wish to transfer: ");
+								System.out.print("Enter the amount you wish to transfer: ");  //crashes with string input
 								double amount = in.nextDouble();
 								in.nextLine();
 								System.out.print("Enter the account number you wish to transfer the money to: ");
 								String account = in.nextLine();
 								while(!isNumeric(num))
 								{
-									System.out.print("You have not entered a numeric value. Please enter your account number: ");
+									System.out.print("You have not entered a numeric value. Please the account number you wish to transfer the money to: ");
 									account= in.nextLine();
 								}
 								BankAccount number2 = null;
@@ -217,7 +230,7 @@ public class MainClass
 													}
 												}
 												tryAgain2 = false;
-												System.out.print("Please enter your account number: ");
+												System.out.print("Please the account number you wish to transfer money to: ");
 												account = in.nextLine();
 											}
 											else
@@ -234,6 +247,7 @@ public class MainClass
 										try
 										{
 											number.transfer(account3, amount);
+											System.out.print("Your new balance in your accounts is: ");         //error somewhere here - not allowing you to transfer the money (says transaction isn't authorized)
 										}								
 										catch(IllegalArgumentException e)
 										{
@@ -241,14 +255,17 @@ public class MainClass
 										}
 									}
 								}
+								break;
 							}
-							case "num":
+							case "n":
 							{
-								System.out.print(number.getAccountNumber());
+								System.out.println("Your account number: " + number.getAccountNumber());
+								break;
 							}
 							default: 
 							{
-								System.out.println("Invalid response. Please try again: ");
+								System.out.println("Invalid response. Please try again. ");
+								break;
 							}
 						}
 					}
