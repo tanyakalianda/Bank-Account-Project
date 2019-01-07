@@ -98,11 +98,11 @@ public class MainClass
 								ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
 								while (account2.size() == 0)
 								{
+									System.out.print("Enter your name: ");       
+									String possName = in.nextLine();
 									for (int i = 0; i < accounts.size(); i++)
 									{
-										System.out.print("Enter your name: ");       
-										String name = in.nextLine();
-										String possName = accounts.get(i).getName();
+										String name = accounts.get(i).getName();
 										if (possName.equals(name))
 										{
 											account2.add(accounts.get(i));
@@ -121,7 +121,7 @@ public class MainClass
 									}
 									else if (account2.get(i) instanceof SavingsAccount)
 									{
-										System.out.println("This is your savings account: " + account2.get(i).toString());
+										System.out.println("This is your savings account:  " + account2.get(i).toString());
 									}
 								}
 								tryAgain = false;
@@ -159,7 +159,7 @@ public class MainClass
 								try
 								{
 									number.withdraw(Double.parseDouble(amount));	
-									System.out.println("Your new balance is: $" + number.getBalance());
+									System.out.println(number.toString());
 								}
 								catch(IllegalArgumentException e)
 								{
@@ -179,7 +179,7 @@ public class MainClass
 								try
 								{	
 									number.deposit(Double.parseDouble(amount));	
-									System.out.println("Your new balance is: $" + number.getBalance());
+									System.out.println(number.toString());
 								}
 								catch(IllegalArgumentException e)
 								{
@@ -238,11 +238,11 @@ public class MainClass
 												ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
 												while (account2.size() == 0)
 												{
+													System.out.print("Enter your name: ");       
+													String possName = in.nextLine();
 													for (int i = 0; i < accounts.size(); i++)
 													{
-														System.out.print("Enter your name: ");       
-														String name = in.nextLine();
-														String possName = accounts.get(i).getName();
+														String name = accounts.get(i).getName();
 														if (possName.equals(name))
 														{
 															account2.add(accounts.get(i));
@@ -286,8 +286,9 @@ public class MainClass
 										BankAccount transferAccount = accounts.get(Integer.parseInt(num2));
 										try
 										{
-											number2.transfer(transferAccount, Double.parseDouble(amount));
-											System.out.println("Your new balance in your account is: " + accounts.get(Integer.parseInt(num2)).toString());        
+											number2.transfer(transferAccount, Double.parseDouble(amount));          //cannot transfer from a checkings to a savings + vice versa
+											//System.out.println(accounts.get(Integer.parseInt(num2)).toString());  
+											System.out.println(accounts.toString());
 										}								
 										catch(IllegalArgumentException e)
 										{
