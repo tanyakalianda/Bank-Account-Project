@@ -209,7 +209,7 @@ public class MainClass
 								{
 									for (int i = 0; i < accounts.size(); i++)
 									{
-										if (accounts.get(i).getAccountNumber() == (Integer.parseInt(num)))
+										if (accounts.get(i).getAccountNumber() == (Integer.parseInt(num2)))
 										{
 											number2 = accounts.get(i);			
 										}
@@ -226,7 +226,7 @@ public class MainClass
 											{
 												System.out.print("Enter your account number: ");
 												num2 = in.nextLine();
-												while(!isNumeric(num))
+												while(!isNumeric(num2))
 												{
 													System.out.print("You have not entered a numeric value. Please enter your account number: ");
 													num2 = in.nextLine();
@@ -265,7 +265,7 @@ public class MainClass
 													}
 												}
 												tryAgain = false;
-												System.out.print("Please enter your account number: ");
+												System.out.print("Please the account number you wish to transfer the money to: ");
 												num2 = in.nextLine();
 												while(!isNumeric(num2))
 												{
@@ -286,8 +286,7 @@ public class MainClass
 										BankAccount transferAccount = accounts.get(Integer.parseInt(num2));
 										try
 										{
-											number2.transfer(transferAccount, Double.parseDouble(amount));          //cannot transfer from a checkings to a savings + vice versa
-											//System.out.println(accounts.get(Integer.parseInt(num2)).toString());  
+											number2.transfer(transferAccount, Double.parseDouble(amount));         
 											System.out.println(accounts.toString());
 										}								
 										catch(IllegalArgumentException e)
