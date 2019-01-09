@@ -12,10 +12,6 @@ public abstract class BankAccount
 	private double balance;
 	
 	//constructors
-	/**
-	 * creates a bank account that initializes name to n, assigns the next account number, and sets the balance to 0
-	 * @param n      name
-	 */
 	public BankAccount(String n)
 	{
 		name = n;
@@ -24,11 +20,6 @@ public abstract class BankAccount
 		nextAccNum++;
 	}
 	
-	/**
-	 * creates a bank account that initializes name to n, assigns the next account number, and assigns balance to b
-	 * @param n           name
-	 * @param b           balance
-	 */
 	public BankAccount(String n, double b)
 	{
 		name = n;
@@ -39,6 +30,7 @@ public abstract class BankAccount
 	
 	//methods
 	/**
+	 * checks that the amount is not a negative number
 	 * adds the amount deposited to the balance
 	 * @param amt          Amount deposited
 	 */
@@ -51,6 +43,7 @@ public abstract class BankAccount
 	}
 	
 	/**
+	 * checks that the amount is not a negative number
 	 * subtracts the amount withdrawn from the balance
 	 * @param amt          Amount withdrawn
 	 */
@@ -81,11 +74,12 @@ public abstract class BankAccount
 	}
 	
 	/**
-	 * 
+	 * updates the accounts at the end of the month
 	 */
 	public abstract void endOfMonthUpdate();
 	
 	/**
+	 * checks that the amount is not a negative number
 	 * withdraws money from the first account and deposits the money into the other account
 	 * @param other            another bank account
 	 * @param amt              amount withdrawn from 1 bank account and deposited to the other bank account
@@ -99,13 +93,17 @@ public abstract class BankAccount
 		}
 	}
 	
+	/**
+	 * returns the user's account number
+	 * @return account number
+	 */
 	public int getAccountNumber()
 	{
 		return accNum;
 	}
 	
 	/**
-	 * returns the account number, the name of the account holder, and the balance stored in the account
+	 * @return  account number, the name of account holder, and balance stored in the account
 	 */
 	public String toString()
 	{

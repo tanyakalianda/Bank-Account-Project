@@ -143,7 +143,7 @@ public class MainClass
 					else
 					{
 						accountNum = false;
-						System.out.print("Enter \"w\" to withdraw money, \"d\" to deposit money, \"t\" to transfer money, or \"n\" to get the account number: ");
+						System.out.print("Enter \"w\" to withdraw money, \"d\" to deposit money, \"t\" to transfer money, or \"n\" to get the account numbers under your name: ");
 						String response = in.nextLine();
 						switch(response) 
 						{
@@ -299,7 +299,35 @@ public class MainClass
 							}
 							case "n":
 							{
-								System.out.println("Your account number: " + number.getAccountNumber());
+								ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
+								while (account2.size() == 0)
+								{
+									System.out.print("Enter your name: ");       
+									String possName = in.nextLine();
+									for (int i = 0; i < accounts.size(); i++)
+									{
+										String name = accounts.get(i).getName();
+										if (possName.equals(name))
+										{
+											account2.add(accounts.get(i));
+										}
+									}
+									if (account2.size() == 0)
+									{
+										System.out.println("You have not entered a valid name. Please try again.");
+									}
+								}
+								for (int i = 0; i < account2.size(); i++)
+								{
+									if (account2.get(i) instanceof CheckingAccount)
+									{
+										System.out.println("This is your checking account: " + account2.get(i).toString());
+									}
+									else if (account2.get(i) instanceof SavingsAccount)
+									{
+										System.out.println("This is your savings account:  " + account2.get(i).toString());
+									}
+								}
 								break;
 							}
 							default: 

@@ -30,8 +30,9 @@ public class CheckingAccount extends BankAccount
 	
 	//methods
 	/**
-	 * deposits an amount greater than 0 to the balance. 
-	 * It applies the transaction fee if the number of transactions exceeds the number of free transactions allowed
+	 * deposits a non-negative amount to the balance
+	 * once the number of transactions exceeds the number of free transactions allowed, it withdraws the transaction fee
+	 * increments number of transactions
 	 * @param amt         amount
 	 */
 	public void deposit(double amt)
@@ -52,13 +53,12 @@ public class CheckingAccount extends BankAccount
 	}
 	
 	/**
-	 * withdraws an amount if and only if the balance is not negative. 
-	 * If the balance goes negative after the transaction, it applies the OverDraftFee. 
-	 * It checks if the number of transactions exceeds the number of free transactions allowed to apply the transaction fee. 
+	 * withdraws a non-negative amount only if the initial balance is not negative  
+	 * if number of transactions exceeds the number of free transactions, it withdraws the transaction fee
+	 * if balance goes negative after the transaction, it applies the over draft fee
+	 * increments number of transactions
 	 * @param amt          amount
 	 */
-		
-	
 	public void withdraw(double amt)
 	{
 		//if the withdraw withdraw the money , apply trans fee, apply overdraft
@@ -83,13 +83,12 @@ public class CheckingAccount extends BankAccount
 	}
 	
 	/**
-	 * if the accounts are under the same name and the amount is less than the balance of the account, it will transfer the amount. 
-	 * If there is a transaction fee, it will check that the total amount withdrawn does not cause the balance to be negative. For every transaction, it increases the numTransactions.
-	 * @param other amt             other Bank Account, amount
+	 * if the accounts are under the same name and the amount is less than/equal to the balance, it transfers the amount to the other bank account
+	 * @param other           other Bank Account
+	 * @param amt             amount
 	 */
 	public void transfer(BankAccount other, double amt)
-	{//if i should transwer, call the super class;s trans
-		// throw an exception
+	{
 		if (getName().equals(other.getName()) && amt <= getBalance())
 		{
 			super.transfer(other, amt);
@@ -101,8 +100,7 @@ public class CheckingAccount extends BankAccount
 	}
 	
 	/**
-	 * resets the number of transactions to 0 and returns the number of transactions.
-	 * @return numTransactions
+	 * resets number of transactions to 0
 	 */
 	public void endOfMonthUpdate()
 	{
