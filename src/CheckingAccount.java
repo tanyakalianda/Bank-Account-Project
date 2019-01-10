@@ -89,6 +89,7 @@ public class CheckingAccount extends BankAccount
 	 */
 	public void transfer(BankAccount other, double amt)
 	{
+		//System.out.println(this.getName() + " " + other.getName());
 		if (getName().equals(other.getName()) && amt <= getBalance())
 		{
 			super.transfer(other, amt);

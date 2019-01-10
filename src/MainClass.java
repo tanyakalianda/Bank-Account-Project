@@ -27,25 +27,25 @@ public class MainClass
 		while (!terminate)
 		{
 			
-			System.out.print("Enter \"add\" to add an account, enter \"transaction\" to make a transaction, or enter \"end\" to terminate the program: ");
+			System.out.print("Enter \"add\" to add an account, enter \"transaction\" to make a transaction, or enter \"end\" to terminate the program: ");       //adds an account
 			String answer = in.nextLine();
 			if (answer.equals("add"))
 			{
-				System.out.print("Enter \"checking\" to create a checking account or \"savings\" to create a savings account: ");
+				System.out.print("Enter \"checking\" to create a checking account or \"savings\" to create a savings account: ");   
 				String account = in.nextLine();
 				while(!account.equals("checking") && !account.equals("savings"))
 				{
 					System.out.print("Invalid input. Please try again: ");
 					account = in.nextLine();
 				}
-				if (account.equals("checking"))
+				if (account.equals("checking"))          //adds a checking account
 				{
 					System.out.print("Enter the name of the account: ");
 					String name = in.nextLine();
 					accounts.add(new CheckingAccount(name, OVER_DRAFT_FEE, TRANSACTION_FEE, FREE_TRANSACTIONS));
 					accNum++;
 				}
-				else if (account.equals("savings"))
+				else if (account.equals("savings"))       //adds a savings account
 				{
 					System.out.print("Enter the name of the account: ");
 					String name = in.nextLine();
@@ -53,9 +53,8 @@ public class MainClass
 					accNum++;
 				}
 			}
-			else if (answer.equals("transaction"))
+			else if (answer.equals("transaction"))      //makes a transaction
 			{
-				//find my account and store it in a local variable
 				System.out.print("Please enter your account number: ");
 				String num = in.nextLine();
 				while(!isNumeric(num))
@@ -65,7 +64,7 @@ public class MainClass
 				}
 				BankAccount number = null;
 				boolean accountNum = true;
-				while (accountNum)
+				while (accountNum)    //checks to make sure the account number is valid
 				{
 					for (int i = 0; i < accounts.size(); i++)
 					{
@@ -74,7 +73,7 @@ public class MainClass
 							number = accounts.get(i);			
 						}
 					}
-					if (number == null)
+					if (number == null)       //if the number given is not valid, re-prompts the user
 					{
 						System.out.println("This is not a valid account number.");
 						System.out.print("Please type \"reenter\" if you would like to reenter your account number or type \"name\" to get your account number: ");
@@ -82,7 +81,7 @@ public class MainClass
 						boolean tryAgain = true;
 						while (tryAgain)
 						{
-							if (ans.equals("reenter"))
+							if (ans.equals("reenter"))    //allows the user to re-enter their number
 							{
 								System.out.print("Enter your account number: ");
 								num = in.nextLine();
@@ -93,7 +92,7 @@ public class MainClass
 								}
 								tryAgain = false;
 							}
-							else if (ans.equals("name"))
+							else if (ans.equals("name"))    //returns the accounts under their name
 							{
 								ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
 								while (account2.size() == 0)
@@ -200,7 +199,7 @@ public class MainClass
 								String num2 = in.nextLine();
 								while(!isNumeric(num2))
 								{
-									System.out.print("You have not entered a numeric value. Please enter your account number: ");
+									System.out.print("You have not entered a numeric value. Please enter the account number you wish to transfer the money to: ");
 									num2 = in.nextLine();
 								}
 								BankAccount number2 = null;
@@ -224,11 +223,11 @@ public class MainClass
 										{
 											if (ans.equals("reenter"))
 											{
-												System.out.print("Enter your account number: ");
+												System.out.print("Enter the account number you wish to transfer the money to: ");
 												num2 = in.nextLine();
 												while(!isNumeric(num2))
 												{
-													System.out.print("You have not entered a numeric value. Please enter your account number: ");
+													System.out.print("You have not entered a numeric value. Please enter the account number you wish to transfer the money to: ");
 													num2 = in.nextLine();
 												}
 												tryAgain = false;
@@ -269,7 +268,7 @@ public class MainClass
 												num2 = in.nextLine();
 												while(!isNumeric(num2))
 												{
-													System.out.print("You have not entered a numeric value. Please enter your account number: ");
+													System.out.print("You have not entered a numeric value. Please enter the account number you wish to transfer the money to: ");
 													num2 = in.nextLine();
 												}
 											}
@@ -286,7 +285,7 @@ public class MainClass
 										BankAccount transferAccount = accounts.get(Integer.parseInt(num2));
 										try
 										{
-											number2.transfer(transferAccount, Double.parseDouble(amount));         
+											number.transfer(transferAccount, Double.parseDouble(amount));    
 											System.out.println(accounts.toString());
 										}								
 										catch(IllegalArgumentException e)
