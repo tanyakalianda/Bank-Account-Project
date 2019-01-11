@@ -92,7 +92,7 @@ public class MainClass
 								}
 								tryAgain = false;
 							}
-							else if (ans.equals("name"))    //returns the accounts under their name
+							else if (ans.equals("name"))    //returns the accounts under the user's name
 							{
 								ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
 								while (account2.size() == 0)
@@ -142,11 +142,11 @@ public class MainClass
 					else
 					{
 						accountNum = false;
-						System.out.print("Enter \"w\" to withdraw money, \"d\" to deposit money, \"t\" to transfer money, or \"n\" to get the account numbers under your name: ");
+						System.out.print("Enter \"w\" to withdraw money, \"d\" to deposit money, \"t\" to transfer money, or \"n\" to get the account numbers under your name: ");  //allows user to select a transaction
 						String response = in.nextLine();
 						switch(response) 
 						{
-							case "w":
+							case "w":    //user wants to withdraw money
 							{									
 								System.out.print("Enter the amount you wish to withdraw: ");    
 								String amount = in.nextLine();
@@ -166,7 +166,7 @@ public class MainClass
 								}
 								break;
 							}
-							case "d":
+							case "d":     //user wants to deposit money
 							{						
 								System.out.print("Enter the amount you wish to deposit: ");     
 								String amount = in.nextLine();
@@ -186,7 +186,7 @@ public class MainClass
 								}
 								break;
 							}
-							case "t":
+							case "t":   //user wants to transfer money
 							{ 
 								System.out.print("Enter the amount you wish to transfer: ");  
 								String amount = in.nextLine();
@@ -204,7 +204,7 @@ public class MainClass
 								}
 								BankAccount number2 = null;
 								boolean accountNum2 = true;
-								while (accountNum2)
+								while (accountNum2)      //checks that the account number given is valid
 								{
 									for (int i = 0; i < accounts.size(); i++)
 									{
@@ -213,7 +213,7 @@ public class MainClass
 											number2 = accounts.get(i);			
 										}
 									}
-									if (number2 == null)
+									if (number2 == null)  //if number given is not valid, it re-prompts the user
 									{
 										System.out.println("This is not a valid account number.");
 										System.out.print("Please type \"reenter\" if you would like to reenter your account number or type \"name\" to get your account number: ");
@@ -221,7 +221,7 @@ public class MainClass
 										boolean tryAgain = true;
 										while (tryAgain)
 										{
-											if (ans.equals("reenter"))
+											if (ans.equals("reenter"))    //allows user to re-enter their number
 											{
 												System.out.print("Enter the account number you wish to transfer the money to: ");
 												num2 = in.nextLine();
@@ -232,7 +232,7 @@ public class MainClass
 												}
 												tryAgain = false;
 											}
-											else if (ans.equals("name"))
+											else if (ans.equals("name"))   //returns accounts under user's name
 											{
 												ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
 												while (account2.size() == 0)
@@ -279,7 +279,7 @@ public class MainClass
 											}
 										}
 									}
-									else
+									else    //transfers the money
 									{
 										accountNum2 = false;
 										BankAccount transferAccount = accounts.get(Integer.parseInt(num2));
@@ -296,7 +296,7 @@ public class MainClass
 								}
 								break;
 							}
-							case "n":
+							case "n":     //returns the account numbers under the user's name
 							{
 								ArrayList<BankAccount> account2 = new ArrayList<BankAccount>();
 								while (account2.size() == 0)
@@ -338,7 +338,7 @@ public class MainClass
 					}
 				}
 			}	
-			else if (answer.equals("end"))
+			else if (answer.equals("end"))      //terminates the program
 			{
 				System.out.println("Program ended");
 				terminate = true;
